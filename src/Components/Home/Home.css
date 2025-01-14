@@ -1,0 +1,36 @@
+.paymentLogoDivSll{
+    width: 50%;
+    height: 5vh;
+}
+
+.logoImgSSL{
+    width: 100%;
+    height: 100%;
+}
+.paymentLogoDivBkash{
+    width: 70%;
+    height: 5vh;
+}
+.logoImgBkash{
+    width: 100%;
+    height: 100%;
+}
+
+@media (max-width: 600px){
+    .paymentLogoDivSll{
+        width: 100%;
+        height: 4vh;
+    }
+    .logoImgSSL{
+        width: 100%;
+        height: 100%;
+    }
+    .paymentLogoDivBkash{
+        width: 100%;
+        height: 4vh;
+    }
+    .logoImgBkash{
+        width: 100%;
+        height: 100%;
+    }
+}
