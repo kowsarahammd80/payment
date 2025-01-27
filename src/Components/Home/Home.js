@@ -7,6 +7,7 @@ const Home = () => {
   const [paymentInfo, setPaymentInfo] = useState({});
   const [step, setStep] = useState(1); // Manage current step
   const [selectedPayment, setSelectedPayment] = useState("");
+  const [loading, setLoading]= useState(false)
 
   const handleNextStep = () => {
     if (step === 1) {
@@ -17,7 +18,7 @@ const Home = () => {
   };
 
   const handleGoBack = () => setStep(1);
-  // const [loading, setLoading]= useState(false)
+  
 
   useEffect(() => {
     // Get the current URL
@@ -52,7 +53,7 @@ const Home = () => {
   // payment handler
   const pay = async () => {
     try {
-      // setLoading(true)
+      setLoading(true)
       const { data } = await axios.post(
         "http://localhost:5000/api/test/payment/creates",
         {
@@ -74,9 +75,9 @@ const Home = () => {
     } catch (error) {
       console.log(error.response.data);
     }
-    //   finally {
-    //     setLoading(false);
-    // }
+      finally {
+        setLoading(false);
+    }
   };
 
   return (
@@ -214,12 +215,13 @@ const Home = () => {
       </div> */}
       <div className="cardMainDiv mx-5 lg:mx-0 xl:mx-0 md:mx-0">
         <div className="">
-          <div className="w-full flex justify-center mb-5">
-            <div className="watheTaLogoDiv">
-              <img className="wathetaImg" src={logo} alt="" />
+        <div className="w-full flex justify-center mb-5">
+              <div className="watheTaLogoDiv">
+                <img className="wathetaImg" src={logo} alt="" />
+              </div>
             </div>
-          </div>
           <div className="p-4 shadow-xl rounded-xl bg-base-100">
+            
             <h2 className="text=lg lg:text-xl xl:text-xl md:text-xl font-bold text-center mb-4">
               Start Your Automation Journey
             </h2>
@@ -274,7 +276,7 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
-                <div className="mx-16">
+                <div className="">
                   <button
                     onClick={handleNextStep}
                     className="w-full cardPaymentButton py-1 rounded-lg"
@@ -290,23 +292,23 @@ const Home = () => {
                 <div className="flex justify-between mb-6">
                   <button
                     onClick={() => setSelectedPayment("Bkash")}
-                    className={`flex-1 p-3 border rounded-lg mr-2 ${
+                    className={`flex justify-center items-center border rounded-lg mr-2 w-full ${
                       selectedPayment === "Bkash"
                         ? "border-red-500 text-red-500"
                         : "border-gray-300"
                     }`}
                   >
-                    <span className="text-lg">🕊</span> Bkash
+                    <span className="bkashLogoDiv me-2 lg:me-4 xl:me-4 md:me-3"><img className="bkashLogo" src="https://logos-download.com/wp-content/uploads/2022/01/BKash_Logo_icon.png" alt="" /></span> Bkash
                   </button>
                   <button
-                    onClick={() => setSelectedPayment("Nagad")}
-                    className={`flex-1 p-3 border rounded-lg ${
-                      selectedPayment === "Nagad"
-                        ? "border-orange-500 text-orange-500"
+                    onClick={() => setSelectedPayment("PayStation")}
+                    className={`flex justify-center items-center p-3 border rounded-lg w-full ${
+                      selectedPayment === "PayStation"
+                        ? "border-indigo-900 text-indigo-900"
                         : "border-gray-300"
                     }`}
                   >
-                    <span className="text-lg">🔥</span> Nagad
+                   <span className="payLogoDiv me-2 lg:me-4 xl:me-4 md:me-3"> <img className="payLogo" src="https://www.paystation.com.bd/documentation/assets/images/logo.png" alt="" /></span> PayStation
                   </button>
                 </div>
                 <div className="flex items-center justify-between">
@@ -338,7 +340,9 @@ const Home = () => {
                     }`}
                     disabled={!selectedPayment}
                   >
-                    Pay Now
+                   {
+                    loading ? (<span className="loading loading-dots loading-lg"></span>) : "Pay Now"
+                   }  
                   </button>
                   <button
                     onClick={handleGoBack}

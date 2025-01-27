@@ -1,11 +1,27 @@
 .cardMainDiv{
-    width: 35%;
+    width: 34%;
 }
 .watheTaLogoDiv{
-    width: 50%;
-    height: 4vh;
+    width: 60%;
+    height: 8vh;
 }
 .wathetaImg{
+    width: 100%;
+    height: 100%;
+}
+.bkashLogoDiv{
+    width: 12%;
+    height: 3vh;
+}
+.bkashLogo{
+    width: 100%;
+    height: 100%;
+}
+.payLogoDiv{
+    width: 20;
+    height: 3vh;
+}
+.payLogo{
     width: 100%;
     height: 100%;
 }
@@ -51,6 +67,30 @@
     .cardMainDiv{
         width: 100%;
     }
+    .watheTaLogoDiv{
+        width: 40%;
+        height: 5vh;
+    }
+    .wathetaImg{
+        width: 100%;
+        height: 100%;
+    }
+    .bkashLogoDiv{
+        width: 20%;
+        height: 3vh;
+    }
+    .bkashLogo{
+        width: 100%;
+        height: 100%;
+    }
+    .payLogoDiv{
+        width: 35%;
+        height: 3vh;
+    }
+    .payLogo{
+        width: 100%;
+        height: 100%;
+    }
     .paymentLogoDivSll{
         width: 45%;
         height: 3vh;
@@ -91,6 +131,30 @@
     .cardMainDiv{
         width: 52%;
     }
+    .watheTaLogoDiv{
+        width: 40%;
+        height: 5vh;
+    }
+    .wathetaImg{
+        width: 100%;
+        height: 100%;
+    }
+    .bkashLogoDiv{
+        width: 20%;
+        height: 3vh;
+    }
+    .bkashLogo{
+        width: 100%;
+        height: 100%;
+    }
+    .payLogoDiv{
+        width: 35%;
+        height: 3vh;
+    }
+    .payLogo{
+        width: 100%;
+        height: 100%;
+    }
     .paymentLogoDivSll{
         width: 50%;
         height: 4vh;
@@ -130,6 +194,30 @@
 @media (min-width: 769px) and (max-width: 1024px){
     .cardMainDiv{
         width: 42%;
+    }
+    .watheTaLogoDiv{
+        width: 40%;
+        height: 4vh;
+    }
+    .wathetaImg{
+        width: 100%;
+        height: 100%;
+    }
+    .bkashLogoDiv{
+        width: 20%;
+        height: 2.5vh;
+    }
+    .bkashLogo{
+        width: 100%;
+        height: 100%;
+    }
+    .payLogoDiv{
+        width: 40%;
+        height: 3vh;
+    }
+    .payLogo{
+        width: 100%;
+        height: 100%;
     }
     .paymentLogoDivSll{
         width: 50%;
