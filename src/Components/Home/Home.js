@@ -70,6 +70,7 @@ const Home = () => {
         },
         { withCredentials: true }
       );
+      console.log(data)
 
       window.location.href = data.bkashURL;
     } catch (error) {
@@ -79,6 +80,52 @@ const Home = () => {
         setLoading(false);
     }
   };
+
+  const orderIds = (Math.random() * 1000 + 1).toFixed(0).toString(); 
+
+  const payStation = async () => {
+    try {
+        setLoading(true);
+
+        // Payload to be sent to the backend
+        const payload = {
+            amount: 3000,
+            orderId: orderIds,
+            name: 'Niloy 2',
+            email: 'emailes@gmail.com',
+            number: '01913885568',
+            packageName: 'best',
+            businessName: 'Tech',
+            currency: 'BDT',
+            paymentType: 'payStation',
+        };
+
+        console.log('Sending Payload:', payload); // Debugging log
+
+        // Axios call to the backend
+        const { data } = await axios.post(
+            'http://localhost:5000/api/payStation/create',
+            payload,
+            { withCredentials: true } // Ensures cookies are included if required
+        );
+
+        // Debugging log for backend response
+        console.log('Backend Response:', data);
+
+        // Redirect to payment URL if successful
+        if (data.payment_url) {
+            window.location.href = data.payment_url;
+        } else {
+            throw new Error('Payment URL not found in response.');
+        }
+    } catch (error) {
+        // Log error for debugging
+        console.error('Payment Error:', error.response?.data || error.message);
+    } finally {
+        setLoading(false);
+    }
+};
+
 
   return (
     <div className="flex justify-center items-center h-screen">
@@ -344,12 +391,15 @@ const Home = () => {
                     loading ? (<span className="loading loading-dots loading-lg"></span>) : "Pay Now"
                    }  
                   </button>
+                 
                   <button
                     onClick={handleGoBack}
                     className="w-full bg-gray-200 text-black py-1 rounded-lg"
                   >
                     Go Back
                   </button>
+
+                  <button onClick={payStation} className="p-3">Pay Station</button>
                 </div>
               </div>
             )}
