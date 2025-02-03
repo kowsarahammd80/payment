@@ -55,7 +55,7 @@ const Home = () => {
     try {
       setLoading(true)
       const { data } = await axios.post(
-        "http://localhost:5000/api/test/payment/creates",
+        "http://localhost:5000/api/test/payment/create",
         {
           amount: parseInt(paymentInfo.amount),
           orderId: Math.random() * 3 + 1,
@@ -81,185 +81,59 @@ const Home = () => {
     }
   };
 
-  const orderIds = (Math.random() * 1000 + 1).toFixed(0).toString(); 
+  // const orderIds = (Math.random() * 3 + 1).toFixed(0).toString(); 
 
-  const payStation = async () => {
-    try {
-        setLoading(true);
+// const payStation = async () => {
+//     try {
+//         setLoading(true);
 
-        // Payload to be sent to the backend
-        const payload = {
-            amount: 3000,
-            orderId: orderIds,
-            name: 'Niloy 2',
-            email: 'emailes@gmail.com',
-            number: '01913885568',
-            packageName: 'best',
-            businessName: 'Tech',
-            currency: 'BDT',
-            paymentType: 'payStation',
-        };
 
-        console.log('Sending Payload:', payload); // Debugging log
+//         const payload = {
+//           amount: parseInt(paymentInfo.amount),
+//           name: paymentInfo.name,
+//           email: paymentInfo.email,
+//           number: paymentInfo.contactNumber,
+//           packageName: paymentInfo.packageName,
+//           businessName: paymentInfo.businessName,
+//           currency: paymentInfo.currency,
+//         };
+        
+        
+//         if (!payload.amount || isNaN(payload.amount)) {
+//           throw new Error('Invalid amount');
+//         }
+//         if (!payload.orderId || !payload.name || !payload.email || !payload.number) {
+//           throw new Error('Missing required fields');
+//         }
 
-        // Axios call to the backend
-        const { data } = await axios.post(
-            'http://localhost:5000/api/payStation/create',
-            payload,
-            { withCredentials: true } // Ensures cookies are included if required
-        );
+//         console.log('Sending Payload:', payload); 
 
-        // Debugging log for backend response
-        console.log('Backend Response:', data);
+//         const { data } = await axios.post(
+//             'http://localhost:5000/api/payStation/create',
+//             payload,
+//             { withCredentials: true } 
+//         );
 
-        // Redirect to payment URL if successful
-        if (data.payment_url) {
-            window.location.href = data.payment_url;
-        } else {
-            throw new Error('Payment URL not found in response.');
-        }
-    } catch (error) {
-        // Log error for debugging
-        console.error('Payment Error:', error.response?.data || error.message);
-    } finally {
-        setLoading(false);
-    }
-};
+    
+//         console.log('Backend Response:', data);
+
+        
+//         if (data.payment_url) {
+//             window.location.href = data.payment_url;
+//         } else {
+//             throw new Error('Payment URL not found in response.');
+//         }
+//     } catch (error) {
+        
+//         console.error('Payment Error:', error.response?.data || error.message);
+//     } finally {
+//         setLoading(false);
+//     }
+// };
 
 
   return (
     <div className="flex justify-center items-center h-screen">
-      {/* <div className="cardMainDiv mx-5">
-        <div className="card bg-base-100 shadow-xl">
-          <div className="card-body">
-            <div className="">
-              <div className="py-5">
-                <div className="border-b">
-                  <h1 className="text-lg lg:text-xl xl:text-xl md:text-xl font-light pb-2 lg:pb-4 xl:pb-4 mb:pb-3 text-center">
-                    Payment Info
-                  </h1>
-                  <p className="text-center pb-2 text-lg lg:text-xl xl:text-xl md:text-xl font-light">
-                    Amount :{" "}
-                    <span className="text-lg lg:text-xl xl:text-xl md:text-xl font-semibold">
-                      {paymentInfo.amount}
-                    </span>
-                    <span className="daynamicInfoDiv">
-                      {paymentInfo.currency}
-                    </span>
-                  </p>
-                </div>
-                <div className="pt-5 flex items-center">
-                  <div className="infoDiv border-r-2 border-dotted w-full">
-                    <p className="mb-1">Name </p>
-                    <p className="mb-1">Email </p>
-                    <p className="mb-1">Business Name </p>
-                    <p className="mb-1">Contact Number </p>
-                    <p className="mb-1">Package Name </p>
-                  </div>
-                  <div className="w-full text-right daynamicInfoDiv">
-                    <p className="mb-1">{paymentInfo.name}</p>
-                    <p className="mb-1">{paymentInfo.email}</p>
-                    <p className="mb-1">{paymentInfo.businessName}</p>
-                    <p className="mb-1">{paymentInfo.contactNumber}</p>
-                    <p className="mb-1">{paymentInfo.packageName}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="card-actions justify-center mx-5 lg:mx-20 xl:mx-20 md:mx-10">
-              <button
-                onClick={() =>
-                  document.getElementById("my_modal_3").showModal()
-                }
-                className="px-5 py-1 cardPaymentButton shadow-xl rounded-lg w-full"
-              >
-                Pay Now
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <dialog id="my_modal_3" className="modal">
-          <div className="modal-box">
-            <form method="dialog">
-              
-              <button className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2 bg-red-500 text-white">
-                ✕
-              </button>
-            </form>
-          
-            <div className="flex flex-col justify-center lg:flex-row lg:justify-between items-start lg:items-center xl:items-center w-full gap-3 lg:gap-5 xl:gap-5 md:gap-5">
-              
-              <div className="flex items-center py-2 lg:py-4 xl:py-4 md:py-4 w-full">
-                <input
-                  type="radio"
-                  name="radio-1"
-                  className="radio me-3"
-                  value="bkash"
-                />
-                <div className="paymentLogoDivBkash">
-                  <img
-                    className="logoImgBkash"
-                    src="https://logos-download.com/wp-content/uploads/2022/01/BKash_Logo-700x287.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-         
-              <div className="flex items-center py-2 lg:py-4 xl:py-4 md:py-4 w-full">
-                <input
-                  type="radio"
-                  name="radio-1"
-                  className="radio me-3"
-                  value="ssl"
-                />
-                <div className="paymentLogoDivSll">
-                  <img
-                    className="logoImgSSL"
-                    src="https://sslcommerz.com/wp-content/uploads/2021/11/logo.png"
-                    alt=""
-                  />
-                </div>
-              </div>
-            </div>
-            <div className="pt-5 mx-5">
-              <button
-                onClick={pay}
-                className="w-full text-center py-1 text-white ModalPayButton rounded-xl shadow-xl"
-              >
-                Go For Paymnet
-              </button>
-            </div>
-            
-          </div>
-        </dialog>
-      </div> */}
-      {/* <div className="flex justify-center items-center h-screen mx-auto w-full">
-        <div className="p-5 shadow-xl">
-          <h1>Payment Details</h1>
-          <p>
-            <strong>Name:</strong> {paymentInfo.name}
-          </p>
-          <p>
-            <strong>Email:</strong> {paymentInfo.email}
-          </p>
-          <p>
-            <strong>Business Name:</strong> {paymentInfo.businessName}
-          </p>
-          <p>
-            <strong>Contact Number:</strong> {paymentInfo.contactNumber}
-          </p>
-          <p>
-            <strong>Package Name:</strong> {paymentInfo.packageName}
-          </p>
-          <p>
-            <strong>Amount:</strong> {paymentInfo.amount}
-          </p>
-          <p>
-            <strong>Currency:</strong> {paymentInfo.currency}
-          </p>
-        </div>
-      </div> */}
       <div className="cardMainDiv mx-5 lg:mx-0 xl:mx-0 md:mx-0">
         <div className="">
         <div className="w-full flex justify-center mb-5">
@@ -399,7 +273,7 @@ const Home = () => {
                     Go Back
                   </button>
 
-                  <button onClick={payStation} className="p-3">Pay Station</button>
+                  {/* <button onClick={payStation} className="p-3">Pay Station</button> */}
                 </div>
               </div>
             )}
