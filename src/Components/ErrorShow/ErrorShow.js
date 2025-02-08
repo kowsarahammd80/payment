@@ -6,7 +6,7 @@ const ErrorShow = () => {
   const message = searchData.get("message");
 
   const goBackHandler = () => {
-    window.location.href = "https://beamish-dodol-d1568a.netlify.app";
+    window.location.href = "https://beta.watheta.com/";
   };
   return (
     <div className="flex justify-center items-center h-screen">

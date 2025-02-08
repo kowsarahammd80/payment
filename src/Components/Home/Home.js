@@ -3,6 +3,7 @@ import "./Home.css";
 import axios from "axios";
 import logo from "../../Images/Social_Media-2-removebg-preview.png";
 
+
 const Home = () => {
   const [paymentInfo, setPaymentInfo] = useState({});
   const [step, setStep] = useState(1); // Manage current step
@@ -55,7 +56,7 @@ const Home = () => {
     try {
       setLoading(true)
       const { data } = await axios.post(
-        "http://localhost:5000/api/test/payment/create",
+        "https://payapi.watheta.com/api/test/payment/create",
         {
           amount: parseInt(paymentInfo.amount),
           orderId: Math.random() * 3 + 1,
@@ -81,55 +82,55 @@ const Home = () => {
     }
   };
 
-  // const orderIds = (Math.random() * 3 + 1).toFixed(0).toString(); 
+  const orderIds = (Math.random() * 3 + 1).toFixed(0).toString(); 
 
-// const payStation = async () => {
-//     try {
-//         setLoading(true);
+const payStation = async () => {
+    try {
+        setLoading(true);
 
-
-//         const payload = {
-//           amount: parseInt(paymentInfo.amount),
-//           name: paymentInfo.name,
-//           email: paymentInfo.email,
-//           number: paymentInfo.contactNumber,
-//           packageName: paymentInfo.packageName,
-//           businessName: paymentInfo.businessName,
-//           currency: paymentInfo.currency,
-//         };
+        const payload = {
+          amount: 220,
+          orderId: orderIds,
+          name: "name",
+          email: "email@gmail.com",
+          number: '120458843',
+          packageName: "basic business",
+          businessName: "Basic",
+          currency: "BDT",
+          refund: "",
+          paymentType: "Paystation",
+        };
         
         
-//         if (!payload.amount || isNaN(payload.amount)) {
-//           throw new Error('Invalid amount');
-//         }
-//         if (!payload.orderId || !payload.name || !payload.email || !payload.number) {
-//           throw new Error('Missing required fields');
-//         }
+        if (!payload.amount || isNaN(payload.amount)) {
+          throw new Error('Invalid amount');
+        }
+        if (!payload.orderId || !payload.name || !payload.email || !payload.number) {
+          throw new Error('Missing required fields');
+        }
 
-//         console.log('Sending Payload:', payload); 
+        console.log('Sending Payload:', payload); 
 
-//         const { data } = await axios.post(
-//             'http://localhost:5000/api/payStation/create',
-//             payload,
-//             { withCredentials: true } 
-//         );
+        const { data } = await axios.post(
+            'http://localhost:5000/api/payStation/create',
+            payload,
+            { withCredentials: true } 
+        );
 
-    
-//         console.log('Backend Response:', data);
-
+        console.log('Backend Response:', data);
         
-//         if (data.payment_url) {
-//             window.location.href = data.payment_url;
-//         } else {
-//             throw new Error('Payment URL not found in response.');
-//         }
-//     } catch (error) {
+        if (data.payment_url) {
+            window.location.href = data.payment_url;
+        } else {
+            throw new Error('Payment URL not found in response.');
+        }
+    } catch (error) {
         
-//         console.error('Payment Error:', error.response?.data || error.message);
-//     } finally {
-//         setLoading(false);
-//     }
-// };
+        console.error('Payment Error:', error.response?.data || error.message);
+    } finally {
+        setLoading(false);
+    }
+};
 
 
   return (
@@ -273,7 +274,8 @@ const Home = () => {
                     Go Back
                   </button>
 
-                  {/* <button onClick={payStation} className="p-3">Pay Station</button> */}
+                  <button onClick={payStation} className="p-3">Pay Station</button>
+
                 </div>
               </div>
             )}

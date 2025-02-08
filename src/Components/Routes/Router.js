@@ -2,7 +2,7 @@ import Main from "../../LayOut/Main/Main";
 import BkashError from "../BkashError/BkashError";
 import ErrorShow from "../ErrorShow/ErrorShow";
 import Home from "../Home/Home";
-import PaymentReTest from "../PaymentRetest/PaymentReTest";
+// import PaymentReTest from "../PaymentRetest/PaymentReTest";
 import PaymnetTest from "../PaymentTest/PaymnetTest";
 // import PaymnetTest from "../PaymentTest/PaymnetTest";
 // import PaymnetTest from "../PaymentTest/PaymnetTest";

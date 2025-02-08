@@ -11,7 +11,7 @@ const Success = () => {
 
 
   const goBackHandler = () => {
-    window.location.href = "https://beamish-dodol-d1568a.netlify.app";
+    window.location.href = "https://beta.watheta.com";
   };
 
   return (
@@ -23,7 +23,6 @@ const Success = () => {
                  <button onClick={goBackHandler} className='bg-rose-500 px-5 py-1 rounded-md shadow-lg text-white'>Go Back Home</button>
                </div>
             </div> */}
-
       <div className="w-6/7 lg:w-2/6 xl:w-2/6 md:w-4/6">
         <div className="card bg-base-100 w-full shadow-xl">
           <div className="card-body">
@@ -69,7 +68,6 @@ const Success = () => {
                         </div>
                       </div>))
                 }
-             
             </section>
             <div className="text-center py-2 bg-rose-500 rounded mx-2 text-white">
               <button onClick={goBackHandler}>Go Back Home</button>
