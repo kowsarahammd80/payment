@@ -7,7 +7,7 @@ import logo from "../../Images/Social_Media-2-removebg-preview.png";
 const Home = () => {
   const [paymentInfo, setPaymentInfo] = useState({});
   const [step, setStep] = useState(1); // Manage current step
-  const [selectedPayment, setSelectedPayment] = useState("");
+  const [selectedPayment, setSelectedPayment] = useState("Bkash");
   const [loading, setLoading]= useState(false)
 
   const handleNextStep = () => {
@@ -51,7 +51,7 @@ const Home = () => {
     // setLoading(false)
   }, []);
 
-  // payment handler
+  //Bakash payment handler
   const pay = async () => {
     try {
       setLoading(true)
@@ -82,23 +82,24 @@ const Home = () => {
     }
   };
 
-  const orderIds = (Math.random() * 3 + 1).toFixed(0).toString(); 
 
+//payStation 
+const orderIds = (Math.random() * 100 + 1).toFixed(0).toString(); 
 const payStation = async () => {
     try {
         setLoading(true);
 
         const payload = {
-          amount: 220,
+          amount: 100,
           orderId: orderIds,
           name: "name",
           email: "email@gmail.com",
-          number: '120458843',
-          packageName: "basic business",
-          businessName: "Basic",
+          number: '123467900',
+          packageName: "Package",
+          businessName: "Business",
           currency: "BDT",
           refund: "",
-          paymentType: "Paystation",
+          paymentType: "paystation",
         };
         
         
@@ -131,7 +132,6 @@ const payStation = async () => {
         setLoading(false);
     }
 };
-
 
   return (
     <div className="flex justify-center items-center h-screen">
@@ -253,19 +253,27 @@ const payStation = async () => {
                   </span>
                 </p>
                 <div className=" pt-2">
-                  <button
-                    onClick={pay}
-                    className={`w-full py-1 rounded-lg mb-4 ${
-                      selectedPayment
-                        ? "bg-red-500 text-white" // Active state
-                        : "bg-gray-300 text-gray-500 cursor-not-allowed" // Disabled state
-                    }`}
-                    disabled={!selectedPayment}
-                  >
-                   {
-                    loading ? (<span className="loading loading-dots loading-lg"></span>) : "Pay Now"
-                   }  
-                  </button>
+                  {
+                    selectedPayment === "Bkash" && (<button
+                      onClick={pay}
+                      className={`w-full py-1 rounded-lg mb-4 shadow-md ${
+                        selectedPayment
+                          ? "bkashColor text-white" // Active state
+                          : "bg-gray-300 text-gray-500 cursor-not-allowed" // Disabled state
+                      }`}
+                      disabled={!selectedPayment}
+                    >
+                     {
+                      loading ? (<span className="loading loading-dots loading-lg"></span>) : "Pay Now"
+                     }  
+                    </button>)
+                  }
+                  {
+                    selectedPayment === "PayStation" && (<button onClick={payStation} className="w-full py-1 rounded-lg mb-4 text-white payStationbg shadow-md">{
+                      loading ? (<span className="loading loading-dots loading-lg"></span>) : "Pay Now"
+                     }</button>)
+                  }
+                  
                  
                   <button
                     onClick={handleGoBack}
@@ -274,7 +282,7 @@ const payStation = async () => {
                     Go Back
                   </button>
 
-                  <button onClick={payStation} className="p-3">Pay Station</button>
+                  {/* <button onClick={payStation} className="p-3">Pay Station</button> */}
 
                 </div>
               </div>

@@ -6,7 +6,7 @@ const ErrorShow = () => {
   const message = searchData.get("message");
 
   const goBackHandler = () => {
-    window.location.href = "https://beta.watheta.com/";
+    window.location.href = "http://localhost:3000/";
   };
   return (
     <div className="flex justify-center items-center h-screen">

@@ -11,7 +11,7 @@ const Success = () => {
 
 
   const goBackHandler = () => {
-    window.location.href = "https://beta.watheta.com";
+    window.location.href = "http://localhost:3000/";
   };
 
   return (
