@@ -2,7 +2,7 @@ import React from 'react';
 
 const BkashError = () => {
     const goBackHandler = ()=>{
-        window.location.href= "http://localhost:3000/"
+        window.location.href= "https://beta.watheta.com/"
     }
     return (
         <div className='flex justify-center items-center h-screen'>

@@ -90,14 +90,14 @@ const payStation = async () => {
         setLoading(true);
 
         const payload = {
-          amount: 100,
+          amount: parseInt(paymentInfo.amount),
           orderId: orderIds,
-          name: "name",
-          email: "email@gmail.com",
-          number: '123467900',
-          packageName: "Package",
-          businessName: "Business",
-          currency: "BDT",
+          name: paymentInfo.name,
+          email: paymentInfo.email,
+          number: paymentInfo.contactNumber,
+          packageName: paymentInfo.packageName,
+          businessName: paymentInfo.businessName,
+          currency: paymentInfo.currency,
           refund: "",
           paymentType: "paystation",
         };
@@ -113,7 +113,7 @@ const payStation = async () => {
         console.log('Sending Payload:', payload); 
 
         const { data } = await axios.post(
-            'http://localhost:5000/api/payStation/create',
+            'https://payapi.watheta.com/api/payStation/create',
             payload,
             { withCredentials: true } 
         );
