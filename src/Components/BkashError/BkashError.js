@@ -1,9 +1,11 @@
 import React from 'react';
 
 const BkashError = () => {
+
     const goBackHandler = ()=>{
-        window.location.href= "https://beta.watheta.com/"
+        window.location.href= "https://reviewqr.xyz"
     }
+    
     return (
         <div className='flex justify-center items-center h-screen'>
         <div className='p-5 shadow-xl rounded-xl bg-base-100'>

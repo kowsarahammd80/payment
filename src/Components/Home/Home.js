@@ -20,7 +20,6 @@ const Home = () => {
 
   const handleGoBack = () => setStep(1);
   
-
   useEffect(() => {
     // Get the current URL
     // setLoading(true)
@@ -90,18 +89,17 @@ const payStation = async () => {
         setLoading(true);
 
         const payload = {
-          amount: 10,
+          amount: parseInt(paymentInfo.amount),
           orderId: orderIds,
-          name: "Kowsar",
-          email: "email@gmail.com",
-          number: "01760011122",
-          packageName: "Package",
-          businessName: "Business",
-          currency: "BDT",
+          name: paymentInfo.name,
+          email: paymentInfo.email,
+          number: paymentInfo.contactNumber,
+          packageName: paymentInfo.packageName,
+          businessName: paymentInfo.businessName,
+          currency: paymentInfo.currency,
           refund: "",
-          paymentType: "paystation",
+          paymentType: "bkash",
         };
-        
         
         if (!payload.amount || isNaN(payload.amount)) {
           throw new Error('Invalid amount');
@@ -113,7 +111,7 @@ const payStation = async () => {
         console.log('Sending Payload:', payload); 
 
         const { data } = await axios.post(
-            'http://localhost:5000/api/payStation/create',
+            'https://payapi.watheta.com/api/payStation/create',
             payload,
             { withCredentials: true } 
         );
