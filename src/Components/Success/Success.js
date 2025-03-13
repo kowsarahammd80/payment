@@ -69,12 +69,14 @@ const Success = () => {
                       </div>))
                 }
             </section>
-            <div className="text-center py-2 bg-rose-500 rounded mx-2 text-white">
+            {/* <div className="text-center py-2 bg-rose-500 rounded mx-2 text-white">
               <button onClick={goBackHandler}>Go Back Home</button>
+            </div> */}
+            <div className="text-center pt-3">
+              For on borading process <a className="text-blue-600 underline" href="https://wa.me/message/BFPGFZIIFKYAO1" target="_blank" rel="noopener noreferrer">click here</a>
             </div>
           </div>
 
-          <div>{/* button */}</div>
         </div>
       </div>
     </div>
